@@ -1,53 +1,53 @@
-# Calculadora.sol
+# Solidity Calculator (Educational)
 
-Contrato inteligente educativo en Solidity que implementa una calculadora basica con operaciones de suma, resta y multiplicacion, ademas de un ejemplo de `modifier` y `event`.
+A minimal Solidity smart contract that implements a basic calculator with add, subtract, and multiply operations, plus examples of a modifier and events.
 
-## Caracteristicas
-- Suma y resta con eventos.
-- Multiplicacion sobre una variable de estado (`resultado`).
-- `modifier` de validacion simple (`checkNumber`).
-- Funcion interna para la logica de resta.
+## Features
+- Addition and subtraction with events.
+- Multiplication over a state variable (`resultado`).
+- Simple validation modifier (`checkNumber`).
+- Internal function used for subtraction logic.
 
-## Version de Solidity
-- `pragma solidity 0.8.24;`
-
-## Contrato
-### Estado
+## Contract Summary
+**State**
 - `uint256 public resultado = 10;`
 
-### Modifiers
-- `checkNumber(uint256 num1_)`: revierte si `num1_` es distinto de 10.
+**Modifier**
+- `checkNumber(uint256 num1_)`: reverts if `num1_` is not `10`.
 
-### Events
+**Events**
 - `Addition(uint256 number1, uint256 number2, uint256 resultado)`
 - `Substraction(uint256 number1, uint256 number2, uint256 resultado)`
 
-### Funciones publicas
+**Public Functions**
 - `addition(uint256 num1_, uint256 num2_) returns (uint256)`
-  - Devuelve la suma y emite `Addition`.
+  - Returns the sum and emits `Addition`.
 - `substraction(uint256 num1_, uint256 num2_) returns (uint256)`
-  - Devuelve la resta y emite `Substraction`.
+  - Returns the subtraction and emits `Substraction`.
 - `multiplier(uint256 num1_)`
-  - Multiplica `resultado` por `num1_`.
+  - Multiplies `resultado` by `num1_`.
 - `multiplier2(uint256 num1_)`
-  - Igual que `multiplier`, pero exige `num1_ == 10` mediante el `modifier`.
+  - Same as `multiplier`, but requires `num1_ == 10` via the modifier.
 
-### Funcion interna
+**Internal Function**
 - `substraction_logic(uint256 num1_, uint256 num2_) internal pure returns (uint256)`
-  - Logica de resta reutilizada por `substraction`.
+  - Reusable subtraction logic used by `substraction`.
 
-## Ejemplo de uso (pseudo)
+## Usage Example (Pseudo)
 ```solidity
 Calculadora calc = new Calculadora();
 uint256 r1 = calc.addition(3, 4);      // 7
 uint256 r2 = calc.substraction(10, 2); // 8
-calc.multiplier(2);                    // resultado = 20 (inicia en 10)
+calc.multiplier(2);                    // resultado = 20 (starts at 10)
 calc.multiplier2(10);                  // resultado = 200
 ```
 
-## Notas
-- Este contrato es meramente educativo.
-- La funcion `multiplier2` fallara si `num1_` es distinto de 10.
+## Solidity Version
+- `pragma solidity 0.8.24;`
 
-## Licencia
-Revisar el encabezado SPDX en `Calculadora.sol`.
+## Notes
+- This contract is purely educational.
+- `multiplier2` will revert unless `num1_` equals `10`.
+
+## License
+See the SPDX header in `Calculadora.sol`.
